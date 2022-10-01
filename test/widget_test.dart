@@ -1,4 +1,4 @@
-import 'package:evm_tools/app.dart';
+import 'package:evm_tools/presentation/app.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

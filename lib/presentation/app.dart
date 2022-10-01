@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'presentation/home_page.dart';
+import 'pages/home_page.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: 'Evm tools',
-      home: MyHomePage(title: 'Evm tools'),
+      home: MyHomePage(),
       debugShowCheckedModeBanner: false,
     );
   }
