@@ -5,10 +5,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'providers/providers.dart';
 
 enum NavigatorEnum {
-  blocks(FeatherIcons.grid, "Blocks"),
-  transactions(FeatherIcons.alignJustify, "Transactions"),
   addresses(FeatherIcons.fileText, "Addresses"),
-  more(FeatherIcons.moreVertical, "more");
+  transactions(FeatherIcons.alignJustify, "Transactions"),
+  settings(FeatherIcons.settings, "Settings");
 
   final IconData icon;
   final String label;

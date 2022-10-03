@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class MorePage extends StatelessWidget {
-  const MorePage({Key? key}) : super(key: key);
+class SettingsPage extends StatelessWidget {
+  const SettingsPage({Key? key}) : super(key: key);
 
-  static const String title = "More...";
+  static const String title = "Settings";
 
   @override
   Widget build(BuildContext context) {
