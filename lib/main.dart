@@ -5,6 +5,7 @@ import 'presentation/app.dart';
 import 'services.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await initializeServices();
   runApp(const ProviderScope(child: MyApp()));
 }
