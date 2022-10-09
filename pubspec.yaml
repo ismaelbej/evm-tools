@@ -39,6 +39,12 @@ dependencies:
   get_it: ^7.2.0
   rx_shared_preferences: ^3.0.0
   rxdart: ^0.27.5
+  web3dart: ^2.4.1
+  http: ^0.13.5
+  web_socket_channel: ^2.2.0
+  ens_dart: ^1.0.0
+  either_dart: ^0.2.0
+  equatable: ^2.0.5
 
 dev_dependencies:
   flutter_test:
