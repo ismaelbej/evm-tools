@@ -1,7 +1,9 @@
+import '../models/account_model.dart';
+
 abstract class AddressDatasource {
-  Stream<List<String>> getAddressList();
+  Stream<List<AccountModel>> getAddressList();
 
-  Future<void> addAddress(String address);
+  Future<void> addAddress(AccountModel account);
 
-  Future<void> removeAddress(String address);
+  Future<void> removeAddress(AccountModel account);
 }

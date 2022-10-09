@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:rx_shared_preferences/rx_shared_preferences.dart';
 
+import '../../models/account_model.dart';
 import '../address_datasource.dart';
 
 class LocalAddressDatasource implements AddressDatasource {
@@ -10,29 +13,38 @@ class LocalAddressDatasource implements AddressDatasource {
   LocalAddressDatasource(this.rxSharedPreferences);
 
   @override
-  Stream<List<String>> getAddressList() => rxSharedPreferences
+  Stream<List<AccountModel>> getAddressList() => rxSharedPreferences
       .getStringListStream(keyAddressList)
-      .map((addressList) => addressList ?? <String>[]);
+      .map((addressList) => _toAccountList(addressList ?? <String>[]));
 
   @override
-  Future<void> addAddress(String address) async {
-    final addressList =
-        await rxSharedPreferences.getStringList(keyAddressList) ?? [];
+  Future<void> addAddress(AccountModel account) async {
+    final accounts = _toAccountList(
+        await rxSharedPreferences.getStringList(keyAddressList) ?? <String>[]);
 
-    final newAddressList =
-        addressList.contains(address) ? addressList : [...addressList, address];
+    final newAccounts =
+        accounts.contains(account) ? accounts : [...accounts, account];
 
-    rxSharedPreferences.setStringList(keyAddressList, newAddressList);
+    rxSharedPreferences.setStringList(
+        keyAddressList, _toStringList(newAccounts));
   }
 
   @override
-  Future<void> removeAddress(String oldAddress) async {
-    final addressList =
-        await rxSharedPreferences.getStringList(keyAddressList) ?? [];
+  Future<void> removeAddress(AccountModel account) async {
+    final addressList = _toAccountList(
+        await rxSharedPreferences.getStringList(keyAddressList) ?? <String>[]);
 
     final newAddressList =
-        addressList.where((address) => address != oldAddress).toList();
+        addressList.where((address) => address != account).toList();
 
-    rxSharedPreferences.setStringList(keyAddressList, newAddressList);
+    rxSharedPreferences.setStringList(
+        keyAddressList, _toStringList(newAddressList));
   }
+
+  List<String> _toStringList(List<AccountModel> accounts) =>
+      accounts.map((account) => jsonEncode(account.toJson())).toList();
+
+  List<AccountModel> _toAccountList(List<String> accounts) => accounts
+      .map((account) => AccountModel.fromJson(jsonDecode(account)))
+      .toList();
 }

@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get_it/get_it.dart';
 
+import '../../domain/entities/account.dart';
 import '../navigation_bar.dart';
 import 'address_list_state.dart';
 
@@ -13,7 +14,7 @@ final addressListProvider = StateProvider<AddressListState>(
   (ref) => AddressListState(addressRepository: locator()),
 );
 
-final addressListStreamProvider = StreamProvider<List<String>>((ref) {
+final addressListStreamProvider = StreamProvider<List<Account>>((ref) {
   final addressListState = ref.watch(addressListProvider);
   return addressListState.getAddressList();
 });

@@ -1,3 +1,4 @@
+import '../../domain/entities/account.dart';
 import '../../domain/repositories/address_repository.dart';
 
 class AddressListState {
@@ -5,11 +6,11 @@ class AddressListState {
 
   AddressListState({required this.addressRepository});
 
-  Stream<List<String>> getAddressList() => addressRepository.getAddressList();
+  Stream<List<Account>> getAddressList() => addressRepository.getAddressList();
 
-  Future<void> addAddress(String address) =>
-      addressRepository.addAddress(address);
+  Future<void> addAddress(Account account) =>
+      addressRepository.addAddress(account);
 
-  Future<void> removeAddress(String address) =>
-      addressRepository.removeAddress(address);
+  Future<void> removeAddress(Account account) =>
+      addressRepository.removeAddress(account);
 }

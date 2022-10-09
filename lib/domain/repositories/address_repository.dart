@@ -1,7 +1,9 @@
+import '../entities/account.dart';
+
 abstract class AddressRepository {
-  Stream<List<String>> getAddressList();
+  Stream<List<Account>> getAddressList();
 
-  Future<void> addAddress(String address);
+  Future<void> addAddress(Account address);
 
-  Future<void> removeAddress(String address);
+  Future<void> removeAddress(Account address);
 }
