@@ -1,27 +1,29 @@
 import 'package:rxdart/rxdart.dart';
 
 import '../../models/account_model.dart';
+import '../../utils/account_utils.dart';
 import '../address_datasource.dart';
 import 'fake_base_datasource.dart';
 
 class FakeAddressDatasource
     with FakeBaseDatasource
     implements AddressDatasource {
-  BehaviorSubject<List<AccountModel>> addresses;
+  late final BehaviorSubject<List<AccountModel>> _accounts;
 
-  FakeAddressDatasource() : addresses = BehaviorSubject.seeded([]);
+  FakeAddressDatasource(String accountString)
+      : _accounts = BehaviorSubject.seeded(parseAccountsString(accountString));
 
   @override
   Stream<List<AccountModel>> getAddressList() {
-    return addresses.distinctUnique();
+    return _accounts.distinctUnique();
   }
 
   @override
   Future<void> addAddress(AccountModel account) async {
     await simulateDelay();
 
-    if (!addresses.value.contains(account)) {
-      addresses.add([...addresses.value, account]);
+    if (!_accounts.value.contains(account)) {
+      _accounts.add([..._accounts.value, account]);
     }
   }
 
@@ -29,9 +31,9 @@ class FakeAddressDatasource
   Future<void> removeAddress(AccountModel account) async {
     await simulateDelay();
 
-    final newAddresses =
-        addresses.value.where((item) => item != account).toList();
+    final newAccounts =
+        _accounts.value.where((item) => item != account).toList();
 
-    addresses.add(newAddresses);
+    _accounts.add(newAccounts);
   }
 }

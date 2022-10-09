@@ -1,0 +1,14 @@
+[
+    {
+        "name": "test.eth",
+        "address": "0x1234"
+    },
+    {
+        "name": "abcd.eth",
+        "address": "0xabcd"
+    },
+    {
+        "name": "one.eth",
+        "address": "0x4444"
+    }
+]

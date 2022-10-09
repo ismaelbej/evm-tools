@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:rx_shared_preferences/rx_shared_preferences.dart';
+import 'package:rxdart/rxdart.dart';
 
 import '../../models/account_model.dart';
 import '../address_datasource.dart';
@@ -15,7 +16,8 @@ class LocalAddressDatasource implements AddressDatasource {
   @override
   Stream<List<AccountModel>> getAddressList() => rxSharedPreferences
       .getStringListStream(keyAddressList)
-      .map((addressList) => _toAccountList(addressList ?? <String>[]));
+      .map((addressList) => _toAccountList(addressList ?? <String>[]))
+      .distinctUnique();
 
   @override
   Future<void> addAddress(AccountModel account) async {
