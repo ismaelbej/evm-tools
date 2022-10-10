@@ -11,7 +11,12 @@ final navigatorProvider =
     StateProvider<NavigatorEnum>((ref) => NavigatorEnum.values.first);
 
 final addressListProvider = StateProvider<AddressListState>(
-  (ref) => AddressListState(addressRepository: locator()),
+  (ref) => AddressListState(
+    getAddressListStreamUsecase: locator(),
+    addAddressUsecase: locator(),
+    removeAddressUsecase: locator(),
+    searchAddressUsecase: locator(),
+  ),
 );
 
 final addressListStreamProvider = StreamProvider<List<Account>>((ref) {

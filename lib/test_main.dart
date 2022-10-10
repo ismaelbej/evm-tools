@@ -7,5 +7,9 @@ import 'data/services.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initializeFakeServices();
-  runApp(const ProviderScope(child: MyApp()));
+  runApp(
+    const ProviderScope(
+      child: MyApp(),
+    ),
+  );
 }

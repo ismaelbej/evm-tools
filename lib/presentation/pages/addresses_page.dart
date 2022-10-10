@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/address_list.dart';
+
 class AddressesPage extends StatelessWidget {
-  const AddressesPage({Key? key}) : super(key: key);
+  const AddressesPage({super.key});
 
   static const String title = "Addresses";
 
@@ -9,7 +11,7 @@ class AddressesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text(title)),
-      body: Container(),
+      body: const AddressList(),
     );
   }
 }

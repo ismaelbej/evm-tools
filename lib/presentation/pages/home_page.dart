@@ -1,4 +1,3 @@
-import 'package:evm_tools/presentation/pages/transactions_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -6,6 +5,7 @@ import '../navigation_bar.dart';
 import '../providers/providers.dart';
 import 'addresses_page.dart';
 import 'settings_page.dart';
+import 'transactions_page.dart';
 
 class MyHomePage extends StatelessWidget {
   const MyHomePage({Key? key}) : super(key: key);
