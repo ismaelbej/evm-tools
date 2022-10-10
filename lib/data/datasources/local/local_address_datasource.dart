@@ -20,7 +20,7 @@ class LocalAddressDatasource implements AddressDatasource {
       .distinctUnique();
 
   @override
-  Future<void> addAddress(AccountModel account) async {
+  Future<bool> addAddress(AccountModel account) async {
     final accounts = _toAccountList(
         await rxSharedPreferences.getStringList(keyAddressList) ?? <String>[]);
 
@@ -29,10 +29,12 @@ class LocalAddressDatasource implements AddressDatasource {
 
     rxSharedPreferences.setStringList(
         keyAddressList, _toStringList(newAccounts));
+
+    return true;
   }
 
   @override
-  Future<void> removeAddress(AccountModel account) async {
+  Future<bool> removeAddress(AccountModel account) async {
     final addressList = _toAccountList(
         await rxSharedPreferences.getStringList(keyAddressList) ?? <String>[]);
 
@@ -41,6 +43,8 @@ class LocalAddressDatasource implements AddressDatasource {
 
     rxSharedPreferences.setStringList(
         keyAddressList, _toStringList(newAddressList));
+
+    return true;
   }
 
   List<String> _toStringList(List<AccountModel> accounts) =>

@@ -16,10 +16,10 @@ class AddressRepositoryImpl implements AddressRepository {
           accounts.map((account) => account.toAccount()).toList());
 
   @override
-  Future<void> addAddress(Account account) =>
+  Future<bool> addAddress(Account account) =>
       addressDatasource.addAddress(AccountModel.fromAccount(account));
 
   @override
-  Future<void> removeAddress(Account account) =>
+  Future<bool> removeAddress(Account account) =>
       addressDatasource.removeAddress(AccountModel.fromAccount(account));
 }

@@ -19,21 +19,25 @@ class FakeAddressDatasource
   }
 
   @override
-  Future<void> addAddress(AccountModel account) async {
+  Future<bool> addAddress(AccountModel account) async {
     await simulateDelay();
 
     if (!_accounts.value.contains(account)) {
       _accounts.add([..._accounts.value, account]);
     }
+
+    return true;
   }
 
   @override
-  Future<void> removeAddress(AccountModel account) async {
+  Future<bool> removeAddress(AccountModel account) async {
     await simulateDelay();
 
     final newAccounts =
         _accounts.value.where((item) => item != account).toList();
 
     _accounts.add(newAccounts);
+
+    return true;
   }
 }
