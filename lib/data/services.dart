@@ -2,6 +2,12 @@ import 'package:flutter/services.dart' show rootBundle;
 import 'package:get_it/get_it.dart';
 import 'package:rx_shared_preferences/rx_shared_preferences.dart';
 
+import '../domain/repositories/address_repository.dart';
+import '../domain/repositories/web3_repository.dart';
+import '../domain/usecases/add_address_usecase.dart';
+import '../domain/usecases/get_address_list_stream_usecase.dart';
+import '../domain/usecases/remove_address_usecase.dart';
+import '../domain/usecases/search_address_usecase.dart';
 import 'datasources/address_datasource.dart';
 import 'datasources/fake/fake_address_datasource.dart';
 import 'datasources/fake/fake_web3_datasource.dart';
@@ -11,8 +17,6 @@ import 'datasources/web3_datasource.dart';
 import 'repositories/address_repository_impl.dart';
 import 'repositories/web3_repository_impl.dart';
 import 'services/web3_service.dart';
-import '../domain/repositories/address_repository.dart';
-import '../domain/repositories/web3_repository.dart';
 
 GetIt locator = GetIt.instance;
 
@@ -20,12 +24,16 @@ Future<void> initializeFakeServices() async {
   await _registerFakeDatasources();
 
   _registerRepositories();
+
+  _registerUsecases();
 }
 
 Future<void> initializeServices() async {
   await _registerDatasources();
 
   _registerRepositories();
+
+  _registerUsecases();
 }
 
 Future _registerFakeDatasources() async {
@@ -65,6 +73,22 @@ void _registerRepositories() {
 
   locator.registerSingleton<Web3Repository>(
     Web3RepositoryImpl(web3datasource: locator()),
+  );
+}
+
+void _registerUsecases() {
+  // Usecases
+  locator.registerSingleton<GetAddressListStreamUsecase>(
+    GetAddressListStreamUsecase(addressRepository: locator()),
+  );
+  locator.registerSingleton<AddAddressUsecase>(
+    AddAddressUsecase(addressRepository: locator()),
+  );
+  locator.registerSingleton<RemoveAddressUsecase>(
+    RemoveAddressUsecase(addressRepository: locator()),
+  );
+  locator.registerSingleton<SearchAddressUsecase>(
+    SearchAddressUsecase(web3repository: locator()),
   );
 }
 
