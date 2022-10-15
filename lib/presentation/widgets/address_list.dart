@@ -20,7 +20,11 @@ class AddressList extends ConsumerWidget {
             ? const AddressInput()
             : GestureDetector(
                 child: ListTile(
-                  title: Text(addressList[index - 1].name),
+                  title: Text(
+                    addressList[index - 1].name.isEmpty
+                        ? addressList[index - 1].address
+                        : addressList[index - 1].name,
+                  ),
                 ),
               ),
       ),
