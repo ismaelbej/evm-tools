@@ -8,21 +8,21 @@
             "name": "evm_tools",
             "request": "launch",
             "type": "dart",
-            "args": ["--dart-define", "INFURA_KEY=$(cat .secret.txt)"],
+            "args": ["--dart-define", "INFURA_KEY=${env:INFURA_KEY}"],
         },
         {
             "name": "evm_tools (profile mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile",
-            "args": ["--dart-define", "INFURA_KEY=$(cat .secret.txt)"],
+            "args": ["--dart-define", "INFURA_KEY=${env:INFURA_KEY}"],
         },
         {
             "name": "evm_tools (release mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release",
-            "args": ["--dart-define", "INFURA_KEY=$(cat .secret.txt)"],
+            "args": ["--dart-define", "INFURA_KEY=${env:INFURA_KEY}"],
         }
     ]
 }

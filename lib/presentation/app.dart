@@ -7,10 +7,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: 'Evm tools',
-      home: MyHomePage(),
+      home: const MyHomePage(),
       debugShowCheckedModeBanner: false,
+      // theme: ThemeData.from(
+      //   colorScheme: ColorScheme.fromSwatch(
+      //     primarySwatch: Colors.teal,
+      //     brightness: Brightness.dark,
+      //   ),
+      // ),
     );
   }
 }

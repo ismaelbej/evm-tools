@@ -87,8 +87,8 @@ void _registerUsecases() {
   locator.registerSingleton<RemoveAddressUsecase>(
     RemoveAddressUsecase(addressRepository: locator()),
   );
-  locator.registerSingleton<SearchAddressUsecase>(
-    SearchAddressUsecase(web3repository: locator()),
+  locator.registerSingleton<SearchNameUsecase>(
+    SearchNameUsecase(web3repository: locator()),
   );
 }
 
